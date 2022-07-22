@@ -21,7 +21,7 @@ function file_upload($image)
             if ($fileError == 0) {
                 if ($fileSize < 5000000) {
                     $fileNewName = uniqid('') . "." . $fileExtension;
-                    $destination = "../pictures/$fileNewName";
+                    $destination = "./pictures/$fileNewName";
                     if (move_uploaded_file($fileTmpName, $destination)) {
                         $result->error = 0;
                         $result->fileName = $fileNewName;

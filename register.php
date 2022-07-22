@@ -50,13 +50,13 @@ if (isset($_POST['btn-signup'])) {
     // basic name validation
     if (empty($fname) || empty($lname)) {
         $error = true;
-        $fnameError = "Please enter your full name and surname";
+        $fnameError = "Please enter your full name and Last name";
     } else if (strlen($fname) < 3 || strlen($lname) < 3) {
         $error = true;
-        $fnameError = "Name and surname must have at least 3 characters.";
+        $fnameError = "Name and Last name must have at least 3 characters.";
     } else if (!preg_match("/^[a-zA-Z]+$/", $fname) || !preg_match("/^[a-zA-Z]+$/", $lname)) {
         $error = true;
-        $fnameError = "Name and surname must contain only letters and no spaces.";
+        $fnameError = "Name and Last name must contain only letters and no spaces.";
     }
 
     // basic email validation
@@ -84,14 +84,7 @@ if (isset($_POST['btn-signup'])) {
     if (empty($address)) {
         $error = true;
         $addressError = "Please enter a valid address";
-    } else if (strlen($address) < 6) {
-        $error = true;
-        $addressError = "Your address must have at least 6 characters";
-    } else if (!preg_match("/^[A-Za-z0-9'\.\-\s\,]/", $address)) {
-        $error = true;
-        $addressError = "Your address can only have specific characters";
     }
-
 
     // password validation
     if (empty($pass)) {
@@ -108,7 +101,7 @@ if (isset($_POST['btn-signup'])) {
     if (!$error) {
 
         $query = "INSERT INTO users(first_name, last_name, email, phone_number, address, picture, password)
-                  VALUES('$fname', '$lname', '$email', '$phone_number', 'address', '$picture->fileName', '$password')";
+                  VALUES('$fname', '$lname', '$email', '$phone_number', '$address', '$picture->fileName', '$password')";
         $res = mysqli_query($connect, $query);
 
         if ($res) {
@@ -170,27 +163,27 @@ mysqli_close($connect);
             <input type="text" name="fname" class="form-control mb-3" placeholder="First name" maxlength="50" value="<?php echo $fname ?>" />
             <span class="text-danger"> <?php echo $fnameError; ?> </span>
 
-            <input type="text" name="lname" class="form-control mb-3" placeholder="Surname" maxlength="50" value="<?php echo $lname ?>" />
+            <input type="text" name="lname" class="form-control mb-3" placeholder="Last name" maxlength="50" value="<?php echo $lname ?>" />
             <span class="text-danger"> <?php echo $fnameError; ?> </span>
 
             <input type="email" name="email" class="form-control mb-3" placeholder="Enter Your Email" maxlength="40" value="<?php echo $email ?>" />
             <span class="text-danger"> <?php echo $emailError; ?> </span>
 
-            <input type="text" name="address" class="form-control mb-3" placeholder="Your Address" maxlength="90" value="<?php echo $address ?>" />
-            <span class="text-danger"> <?php echo $addressError; ?> </span>
-
             <input type="text" name="phone_number" class="form-control mb-3" placeholder="Your Phone" maxlength="100" value="<?php echo $phone_number ?>" />
             <span class="text-danger"> <?php echo $phone_number_Error; ?> </span>
+
+            <input type="text" name="address" class="form-control mb-3" placeholder="Your Address" maxlength="90" value="<?php echo $address ?>" />
+            <span class="text-danger"> <?php echo $addressError; ?> </span>
 
             <input type="password" name="pass" class="form-control mb-3" placeholder="Enter Password" maxlength="15" />
             <span class="text-danger"> <?php echo $passError; ?> </span>
 
-            <input class='form-control w-50' type="file" name="picture">
+            <input class='form-control w-75' type="file" name="picture">
             <span class="text-danger"> <?php echo $picError; ?> </span>
             <hr />
             <button type="submit" class="btn btn-block btn-primary" name="btn-signup">Sign Up</button>
             <hr />
-            <a class="btn btn-outline-success" href="index.php">Sign in Here...</a>
+            <a class="btn btn-outline-success" href="login.php">Sign in Here...</a>
         </form>
     </div>
 

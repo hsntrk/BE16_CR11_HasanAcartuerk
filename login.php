@@ -91,7 +91,7 @@ mysqli_close($connect);
     <?php require_once "components/navbar.php" ?>
 
     <div class="container m-5 d-flex justify-content-center">
-        <form class="w-50" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
+        <form class="w-75" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
             <h2>Login</h2>
             <hr />
             <?php

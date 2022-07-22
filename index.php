@@ -1,23 +1,6 @@
 <?php
-session_start();
+
 require_once "actions/db_connect.php";
-
-// if adm will redirect to dashboard
-if (isset($_SESSION['adm'])) {
-    header("Location: dashboard.php");
-    exit;
-}
-// if session is not set this will redirect to login page
-if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
-    header("Location: login.php");
-    exit;
-}
-
-// select logged-in users details - procedural style
-$res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['user']);
-$row_u = mysqli_fetch_array($res, MYSQLI_ASSOC);
-
-
 
 $sql = "SELECT * from animals";
 $result = mysqli_query($connect, $sql);
@@ -74,21 +57,8 @@ mysqli_close(($connect));
 <body>
 
     <!-- navbar -->
-    <?php require_once "components/navbar.php" ?>
+    <?php require_once "components/navbar_u.php" ?>
 
-
-    <div class="container manageCard w-50 mt-3 d-flex justify-content-center flex-column text-center">
-        <div class="">
-            <img class="userImage rounded-circle" src="pictures/<?php echo $row_u['picture']; ?>" alt="<?php echo $row_u['first_name']; ?>">
-            <h2 class="text-dark mt-5 mb-5">
-                <strong>&nbsp; Hi <?php echo $row_u['first_name'] . " " . $row_u['last_name']; ?>
-                </strong>
-            </h2>
-        </div>
-        <a href="logout.php?logout" class="btn btn-danger mb-3">Sign Out</a>
-        <a href="update.php?id=<?php echo $_SESSION['user'] ?>" class="btn btn-outline-info mb-3">Update your Profile</a>
-
-    </div>
 
 
 

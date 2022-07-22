@@ -12,7 +12,7 @@
             <ul class="navbar-nav navbar-dark mr-auto d-lg-flex justify-content-around align-items-center">
                 <li class="nav-item active"><a href="index.php" class="nav-link ">Home</a></li>
                 <li class="nav-item"><a href="#" class="nav-link ">Pets</a></li>
-
+                <a class="btn btn-outline-light m-3" href="login.php"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
 
             </ul>
         </div>

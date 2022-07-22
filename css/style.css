@@ -26,10 +26,22 @@ td {
   text-align: left;
   vertical-align: middle;
 }
+
 tr {
   text-align: center;
 }
 
 th {
   text-align: left;
+}
+
+.userImage {
+  width: 200px;
+  height: auto;
+}
+
+fieldset {
+  margin: auto;
+  margin-top: 100px;
+  width: 60%;
 }

@@ -75,7 +75,7 @@ if ($_GET['id']) {
                 </tr>
             </table>
 
-            <h3 class="mb-4">Do you really want to delete this product?</h3>
+            <h3 class="mb-4">Do you really want to delete this animal?</h3>
             <form action="actions/a_delete.php" method="post">
                 <input type="hidden" name="id" value="<?php echo $id ?>" />
                 <input type="hidden" name="picture" value="<?php echo $picture ?>" />

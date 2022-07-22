@@ -2,7 +2,7 @@
 
     <nav class="navbar navbar-expand-lg bg-secondary align-items-center ">
 
-        <a href="#" class="navbar-brand navbar-dark  ms-3"><img src="images/logo.png" alt="" height="60vh">Adopt a Pet</a>
+        <a href="#" class="navbar-brand navbar-dark  ms-3"><img src="../images/logo.png" alt="" height="60vh">Adopt a Pet</a>
 
         <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
             <span class="navbar-toggler-icon"></span>

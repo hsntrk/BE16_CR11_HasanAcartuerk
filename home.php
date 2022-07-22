@@ -80,10 +80,14 @@ mysqli_close(($connect));
     <div class="container manageCard w-50 mt-3 d-flex justify-content-center flex-column text-center">
         <div class="">
             <img class="userImage rounded-circle" src="pictures/<?php echo $row_u['picture']; ?>" alt="<?php echo $row_u['first_name']; ?>">
-            <h2 class="text-dark mt-5 mb-5">
+            <h2 class="text-dark mt-5 mb-3">
                 <strong>&nbsp; Hi <?php echo $row_u['first_name'] . " " . $row_u['last_name']; ?>
                 </strong>
             </h2>
+            <h4 class="text-dark mb-3">
+                <strong>&nbsp; you are logged in with <?php echo $row_u['email']; ?>
+                </strong>
+            </h4>
         </div>
         <a href="logout.php?logout" class="btn btn-danger mb-3">Sign Out</a>
         <a href="update.php?id=<?php echo $_SESSION['user'] ?>" class="btn btn-outline-info mb-3">Update your Profile</a>

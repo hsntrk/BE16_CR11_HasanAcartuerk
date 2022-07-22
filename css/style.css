@@ -1,0 +1,35 @@
+* {
+  font-family: "Courgette", cursive;
+  list-style: none;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  list-style: none;
+}
+
+footer {
+  padding: 4vh;
+}
+
+.manageCard {
+  margin: auto;
+}
+
+.img-thumbnail {
+  width: 70px !important;
+  height: 70px !important;
+}
+
+td {
+  text-align: left;
+  vertical-align: middle;
+}
+tr {
+  text-align: center;
+}
+
+th {
+  text-align: left;
+}

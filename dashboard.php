@@ -68,7 +68,7 @@ mysqli_close($connect);
             <div class="col-4 p-4 text-center">
                 <img class="userImage" src="pictures/admavatar.png" alt="Adm avatar">
                 <p class="">Administrator</p>
-                <a href="products/index.php" class="btn btn-success m-1">Animals</a>
+                <a href="animals/index.php" class="btn btn-success m-1">Animals</a>
                 <a href="logout.php?logout" class="btn btn-danger m-1">Logout</a>
             </div>
             <div class="col-8 mt-2">

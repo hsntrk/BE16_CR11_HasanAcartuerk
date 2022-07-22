@@ -53,15 +53,11 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
                 </tr>
                 <tr>
                     <th>Gender</th>
-                    <td><input class='form-control' type="text" name="age" placeholder="Gender" /></td>
+                    <td><input class='form-control' type="text" name="gender" placeholder="Gender" /></td>
                 </tr>
                 <tr>
                     <th>Breed</th>
                     <td><input class='form-control' type="text" name="breed" placeholder="Breed" /></td>
-                </tr>
-                <tr>
-                    <th>Picture</th>
-                    <td><input class='form-control' type="file" name="picture" /></td>
                 </tr>
                 <tr>
                     <th>Size</th>
@@ -91,6 +87,10 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
                 <tr>
                     <th>Location</th>
                     <td><input class='form-control' type="text" name="location" placeholder="Location" /></td>
+                </tr>
+                <tr>
+                    <th>Picture</th>
+                    <td><input class='form-control' type="file" name="picture" /></td>
                 </tr>
                 <th>Status</th>
                 <td> <select name="status">

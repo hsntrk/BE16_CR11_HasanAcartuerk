@@ -1,16 +1,19 @@
 <?php
 require_once "db_connect.php";
 
-function file_upload($image)
+function file_upload($picture, $source = 'user')
 {
     $result = new stdClass();
-    $result->fileName = 'product.png';
+    $result->fileName = 'avatar.png';
+    if (isset($_SESSION['adm'])) {
+        $result->fileName = 'animal.png';
+    }
     $result->error = 1;
-    $fileName = $image["name"];
-    $fileType = $image["type"];
-    $fileTmpName = $image["tmp_name"];
-    $fileError = $image["error"];
-    $fileSize = $image["size"];
+    $fileName = $picture["name"];
+    $fileType = $picture["type"];
+    $fileTmpName = $picture["tmp_name"];
+    $fileError = $picture["error"];
+    $fileSize = $picture["size"];
     $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     $filesAllowed = ["png", "jpg", "jpeg"];
     if ($fileError == 4) {
@@ -21,7 +24,11 @@ function file_upload($image)
             if ($fileError == 0) {
                 if ($fileSize < 5000000) {
                     $fileNewName = uniqid('') . "." . $fileExtension;
-                    $destination = "./pictures/$fileNewName";
+                    if ($source == 'animal') {
+                        $destination = "../../pictures/$fileNewName";
+                    } elseif ($source == 'user') {
+                        $destination = "pictures/$fileNewName";
+                    }
                     if (move_uploaded_file($fileTmpName, $destination)) {
                         $result->error = 0;
                         $result->fileName = $fileNewName;

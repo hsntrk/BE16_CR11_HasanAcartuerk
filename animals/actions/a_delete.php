@@ -17,7 +17,7 @@ if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
 if ($_POST) {
     $id = $_POST['id'];
     $picture = $_POST['picture'];
-    ($picture == "product.png") ?: unlink("../../pictures/$picture");
+    ($picture == "animal.png") ?: unlink("../../pictures/$picture");
 
     $sql = "DELETE FROM animals WHERE id = {$id}";
     if (mysqli_query($connect, $sql) === TRUE) {

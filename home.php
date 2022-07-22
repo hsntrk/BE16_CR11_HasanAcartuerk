@@ -18,8 +18,8 @@ if (mysqli_num_rows($result) > 0) {
         <td>" . $row['description'] . "</td>
         <td>" . $row['location'] . "</td>
         <td>" . $row['status'] . "</td>
-        <a href='details.php?id=" . $row['id'] . "'>
-        <button class='btn btn-info btn-sm' type='button'>Details</button></a>
+        <td><a href='details.php?id=" . $row['id'] . "'>
+        <button class='btn btn-info btn-sm' type='button'>Details</button></a></td>
         </tr>";
     }
 } else {

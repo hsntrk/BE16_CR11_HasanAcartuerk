@@ -18,27 +18,32 @@ $res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['user'
 $row_u = mysqli_fetch_array($res, MYSQLI_ASSOC);
 
 
-
-$sql = "SELECT * from animals";
+// show only Animals which are available
+$sql = "SELECT * from animals WHERE status='available'";
 $result = mysqli_query($connect, $sql);
 $body = "";
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $body .= "<tr>
-        <td><img class='img-thumbnail' src='pictures/" . $row['picture'] . "'</td>
-        <td>" . $row['name'] . "</td>
-        <td>" . $row['gender'] . "</td>
-        <td>" . $row['breed'] . "</td>
-        <td>" . $row['size'] . "</td>
-        <td>" . $row['age'] . "</td>
-        <td>" . $row['vaccine'] . "</td>
-        <td>" . $row['description'] . "</td>
-        <td>" . $row['location'] . "</td>
-        <td>" . $row['status'] . "</td>
-        <td><a href='details.php?id=" . $row['id'] . "'>
-        <button class='btn btn-info btn-sm' type='button'>Details</button></a></td>
-        </tr>";
+        $body .= "<div class='col-xl-3 col-lg-4 col-md-6 mb-4'>
+        <div class='bg-wight rounded shadow-lg p-3'>
+            <img src='pictures/" . $row['picture'] . "' class='card-img-top d-none d-md-block' alt='...'>
+            <div class='bg-secondary'>
+                <h3 class='card-title text-light text-center p-2 mb-2'>" . $row['name'] . "</h3>
+            </div>
+            <div class='card-body'>
+                <p class='card-text m-0'><strong>Gender: </strong> " . $row['gender'] . "</p>
+                <p class='card-text m-0'><strong>Breed: </strong>" . $row['breed'] . "</p>
+                <p class='card-text m-0'><strong>Size: </strong>" . $row['size'] . "</p>
+                <p class='card-text m-0'><strong>Age: </strong> " . $row['age'] . "</p>
+                <p class='card-text m-0'><strong>Vaccine: </strong>" . $row['vaccine'] . "</p>
+                <p class='card-text m-0'><strong>Location: </strong>" . $row['location'] . "</p>
+                <p class='card-text'><strong>Status: </strong>" . $row['status'] . "</p>
+                <p class='text-center'><a href='pet_adoption.php?id=" . $row['id'] . "'>
+        <button class='btn btn-success btn-sm' type='button'>Take me home</button></a></p>
+            </div>
+        </div>
+    </div>";
     }
 } else {
     $body = "<tr><td colspan='11'><center>No Data Available </center></td></tr>";
@@ -74,7 +79,7 @@ mysqli_close(($connect));
 <body>
 
     <!-- navbar -->
-    <?php require_once "components/navbar.php" ?>
+    <?php require_once "components/navbar_user.php" ?>
 
 
     <div class="container manageCard w-50 mt-3 d-flex justify-content-center flex-column text-center">
@@ -98,39 +103,12 @@ mysqli_close(($connect));
 
     <!-- Animals from php -->
     <div class="container manageCard w-100 mt-3">
-        <div class='mb-3 d-flex p-2 justify-content-between'>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter STATUS
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="filter.php">All</a></li>
-                    <li><a class="dropdown-item" href="filter.php?status=available">Available</a></li>
-                    <li><a class="dropdown-item" href="filter.php?status=adopted">Adopted</a></li>
-                </ul>
-            </div>
-        </div>
-        <p class='h2 text-center bg-secondary bg-gradient text-white p-4'> Pet Adoption</p>
-        <table class='table table-striped'>
-            <thead class='table-success'>
-                <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>Breed</th>
-                    <th>Size</th>
-                    <th>Age</th>
-                    <th>Vaccine</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+        <p class='h2 text-center bg-secondary bg-gradient text-white p-4'> Available Pets for Adoption</p>
+        <section class="container">
+            <div class="row">
                 <?php echo $body ?>
-            </tbody>
-        </table>
+            </div>
+        </section>
     </div>
 
 

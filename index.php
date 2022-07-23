@@ -8,20 +8,25 @@ $body = "";
 
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
-        $body .= "<tr>
-        <td><img class='img-thumbnail' src='pictures/" . $row['picture'] . "'</td>
-        <td>" . $row['name'] . "</td>
-        <td>" . $row['gender'] . "</td>
-        <td>" . $row['breed'] . "</td>
-        <td>" . $row['size'] . "</td>
-        <td>" . $row['age'] . "</td>
-        <td>" . $row['vaccine'] . "</td>
-        <td>" . $row['description'] . "</td>
-        <td>" . $row['location'] . "</td>
-        <td>" . $row['status'] . "</td>
-        <td><a href='details.php?id=" . $row['id'] . "'>
-        <button class='btn btn-info btn-sm' type='button'>Details</button></a></td>
-        </tr>";
+        $body .= "<div class='col-xl-3 col-lg-4 col-md-6 mb-4'>
+        <div class='bg-wight rounded shadow-lg p-3'>
+            <img src='pictures/" . $row['picture'] . "' class='card-img-top d-none d-md-block' alt='...'>
+            <div class='bg-secondary'>
+                <h3 class='card-title text-light text-center p-2 mb-2'>" . $row['name'] . "</h3>
+            </div>
+            <div class='card-body'>
+                <p class='card-text m-0'><strong>Gender: </strong> " . $row['gender'] . "</p>
+                <p class='card-text m-0'><strong>Breed: </strong>" . $row['breed'] . "</p>
+                <p class='card-text m-0'><strong>Size: </strong>" . $row['size'] . "</p>
+                <p class='card-text m-0'><strong>Age: </strong> " . $row['age'] . "</p>
+                <p class='card-text m-0'><strong>Vaccine: </strong>" . $row['vaccine'] . "</p>
+                <p class='card-text m-0'><strong>Location: </strong>" . $row['location'] . "</p>
+                <p class='card-text'><strong>Status: </strong>" . $row['status'] . "</p>
+                <p><a href='details.php?id=" . $row['id'] . "'>
+        <button class='btn btn-info btn-sm' type='button'>Details</button></a></p>
+            </div>
+        </div>
+    </div>";
     }
 } else {
     $body = "<tr><td colspan='11'><center>No Data Available </center></td></tr>";
@@ -77,26 +82,11 @@ mysqli_close(($connect));
             </div>
         </div>
         <p class='h2 text-center bg-secondary bg-gradient text-white p-4'> Pet Adoption</p>
-        <table class='table table-striped'>
-            <thead class='table-success'>
-                <tr>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Gender</th>
-                    <th>Breed</th>
-                    <th>Size</th>
-                    <th>Age</th>
-                    <th>Vaccine</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+        <section class="container">
+            <div class="row">
                 <?php echo $body ?>
-            </tbody>
-        </table>
+            </div>
+        </section>
     </div>
 
 

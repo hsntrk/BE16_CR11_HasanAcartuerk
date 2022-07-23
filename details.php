@@ -41,10 +41,10 @@ $row = mysqli_fetch_assoc($result);
 
         <p class='h2 text-center bg-secondary bg-gradient text-white p-4'>Details of " <?= $row["name"] ?> "</p>
 
-        <div class="card mb-3" style="max-width: 80vw">
+        <div class="card mb-3 shadow-lg mt-3" style="max-width: 80vw">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src='pictures/<?= $row["picture"] ?>' class="img-fluid rounded-start" alt="...">
+                    <img src='pictures/<?= $row["picture"] ?>' class="img-fluid rounded-start" style="height: 100%;" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -76,7 +76,7 @@ $row = mysqli_fetch_assoc($result);
 
             </div>
         </div>
-        <a href="home.php" class="btn btn-outline-info btn-lg ps-4 pe-4 mb-5 mt-3"><i class="fa-solid fa-backward"></i>&ensp; Back to Overview &ensp;
+        <a href="index.php" class="btn btn-outline-info btn-lg ps-4 pe-4 mb-5 mt-3 shadow-lg"><i class="fa-solid fa-backward"></i>&ensp; Back to Overview &ensp;
         </a>
     </div>
 

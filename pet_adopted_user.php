@@ -1,9 +1,25 @@
 <?php
-
+session_start();
 require_once "actions/db_connect.php";
 
-// list all animals older then 8
-$sql = "SELECT * from animals WHERE age > 8";
+// if adm will redirect to dashboard
+if (isset($_SESSION['adm'])) {
+    header("Location: dashboard.php");
+    exit;
+}
+// if session is not set this will redirect to login page
+if (!isset($_SESSION['adm']) && !isset($_SESSION['user'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// select logged-in users details - procedural style
+$res = mysqli_query($connect, "SELECT * FROM users WHERE id=" . $_SESSION['user']);
+$row_u = mysqli_fetch_array($res, MYSQLI_ASSOC);
+
+
+// show only Animals which are available
+$sql = "SELECT * from animals WHERE status='available'";
 $result = mysqli_query($connect, $sql);
 $body = "";
 
@@ -23,8 +39,6 @@ if (mysqli_num_rows($result) > 0) {
                 <p class='card-text m-0'><strong>Vaccine: </strong>" . $row['vaccine'] . "</p>
                 <p class='card-text m-0'><strong>Location: </strong>" . $row['location'] . "</p>
                 <p class='card-text'><strong>Status: </strong>" . $row['status'] . "</p>
-                <p><a href='details.php?id=" . $row['id'] . "'>
-        <button class='btn btn-info btn-sm' type='button'>Details</button></a></p>
             </div>
         </div>
     </div>";
@@ -63,33 +77,37 @@ mysqli_close(($connect));
 <body>
 
     <!-- navbar -->
-    <?php require_once "components/navbar_u.php" ?>
+    <?php require_once "components/navbar_user.php" ?>
 
+
+    <div class="container manageCard w-50 mt-3 d-flex justify-content-center flex-column text-center">
+        <div class="">
+            <img class="userImage rounded-circle" src="pictures/<?php echo $row_u['picture']; ?>" alt="<?php echo $row_u['first_name']; ?>">
+            <h2 class="text-dark mt-5 mb-3">
+                <strong>&nbsp; Hi <?php echo $row_u['first_name'] . " " . $row_u['last_name']; ?>
+                </strong>
+            </h2>
+            <h4 class="text-dark mb-3">
+                <strong>&nbsp; you are logged in with <?php echo $row_u['email']; ?>
+                </strong>
+            </h4>
+        </div>
+        <a href="logout.php?logout" class="btn btn-danger mb-3">Sign Out</a>
+        <a href="update.php?id=<?php echo $_SESSION['user'] ?>" class="btn btn-outline-info mb-3">Update your Profile</a>
+        <a href="home.php" class="btn btn-secondary mb-3"><i class="fa-solid fa-backward"></i>&nbsp;Go Back to your Profile</a>
+
+    </div>
 
 
 
     <!-- Animals from php -->
     <div class="container manageCard w-100 mt-3">
-        <div class='mb-3 d-flex p-2 justify-content-between'>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter STATUS
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="filter.php">All</a></li>
-                    <li><a class="dropdown-item" href="filter.php?status=available">Available</a></li>
-                    <li><a class="dropdown-item" href="filter.php?status=adopted">Adopted</a></li>
-                </ul>
-            </div>
-        </div>
-        <p class='h2 text-center bg-secondary bg-gradient text-white p-4'> Senior Pet's Adoption</p>
-
+        <p class='h2 text-center bg-secondary bg-gradient text-white p-4'> You have already adopted these Pets</p>
         <section class="container">
             <div class="row">
                 <?php echo $body ?>
             </div>
         </section>
-
     </div>
 
 

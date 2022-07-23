@@ -70,18 +70,6 @@ mysqli_close(($connect));
 
     <!-- Animals from php -->
     <div class="container manageCard w-100 mt-3">
-        <div class='mb-3 d-flex p-2 justify-content-between'>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Filter STATUS
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="filter.php">All</a></li>
-                    <li><a class="dropdown-item" href="filter.php?status=available">Available</a></li>
-                    <li><a class="dropdown-item" href="filter.php?status=adopted">Adopted</a></li>
-                </ul>
-            </div>
-        </div>
         <p class='h2 text-center bg-secondary bg-gradient text-white p-4'> Senior Pet's Adoption</p>
 
         <section class="container">

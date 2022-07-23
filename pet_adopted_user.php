@@ -19,7 +19,7 @@ $row_u = mysqli_fetch_array($res, MYSQLI_ASSOC);
 
 
 // show only Animals which are available
-$sql = "SELECT * from animals WHERE status='available'";
+$sql = "SELECT * from animals WHERE animals.id IN (SELECT fk_animal_id from pet_adoption WHERE fk_user_id = {$_SESSION["user"]})";
 $result = mysqli_query($connect, $sql);
 $body = "";
 
@@ -44,7 +44,7 @@ if (mysqli_num_rows($result) > 0) {
     </div>";
     }
 } else {
-    $body = "<tr><td colspan='11'><center>No Data Available </center></td></tr>";
+    $body = "<div class='bg-light' m-3><h4 class='text-center m-5 text-danger'>No Data Available / No Pets Adopted yet</h4></div>";
 }
 
 mysqli_close(($connect));

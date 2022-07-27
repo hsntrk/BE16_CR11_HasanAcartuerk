@@ -39,8 +39,12 @@ if (mysqli_num_rows($result) > 0) {
                 <p class='card-text m-0'><strong>Vaccine: </strong>" . $row['vaccine'] . "</p>
                 <p class='card-text m-0'><strong>Location: </strong>" . $row['location'] . "</p>
                 <p class='card-text'><strong>Status: </strong>" . $row['status'] . "</p>
-                <p class='text-center'><a href='pet_adoption.php?id=" . $row['id'] . "'>
-        <button class='btn btn-success btn-sm' type='button'>Take me home</button></a></p>
+                
+                <a href='details.php?id=" . $row['id'] . "'>
+                <button class='btn btn-info btn-sm' type='button'>Details</button></a>
+                
+                <a href='pet_adoption.php?id=" . $row['id'] . "'>
+                <button class='btn btn-success btn-sm' type='button'>Take me home</button></a>
             </div>
         </div>
     </div>";

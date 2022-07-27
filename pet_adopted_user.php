@@ -19,7 +19,7 @@ $row_u = mysqli_fetch_array($res, MYSQLI_ASSOC);
 
 
 // show only Animals which are available
-$sql = "SELECT * from animals WHERE animals.id IN (SELECT fk_animal_id from pet_adoption WHERE fk_user_id = {$_SESSION["user"]})";
+$sql = "SELECT * from animals WHERE animals.status = 'adopted' AND animals.id IN (SELECT fk_animal_id from pet_adoption WHERE fk_user_id = {$_SESSION["user"]})";
 $result = mysqli_query($connect, $sql);
 $body = "";
 

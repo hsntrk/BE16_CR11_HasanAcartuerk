@@ -10,7 +10,7 @@ $body = "";
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $body .= "<div class='col-xl-3 col-lg-4 col-md-6 mb-4'>
-        <div class='bg-wight rounded shadow-lg p-3'>
+        <div class='bg-wight rounded shadow-lg p-3' style='mh-100'>
             <img src='pictures/" . $row['picture'] . "' class='card-img-top d-none d-md-block' alt='...'>
             <div class='bg-secondary'>
                 <h3 class='card-title text-light text-center p-2 mb-2'>" . $row['name'] . "</h3>
@@ -23,8 +23,8 @@ if (mysqli_num_rows($result) > 0) {
                 <p class='card-text m-0'><strong>Vaccine: </strong>" . $row['vaccine'] . "</p>
                 <p class='card-text m-0'><strong>Location: </strong>" . $row['location'] . "</p>
                 <p class='card-text'><strong>Status: </strong>" . $row['status'] . "</p>
-                <p><a href='details.php?id=" . $row['id'] . "'>
-        <button class='btn btn-info btn-sm' type='button'>Details</button></a></p>
+                <p class='card-text position-relative bottom-0'><a href='details.php?id=" . $row['id'] . "'>
+                <button class='btn btn-info btn-sm' type='button'>Details</button></a></p>
             </div>
         </div>
     </div>";

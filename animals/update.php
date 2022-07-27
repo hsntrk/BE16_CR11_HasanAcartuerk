@@ -29,6 +29,7 @@ if (isset($_GET['id'])) {
         $vaccine = $data["vaccine"];
         $description = $data["description"];
         $location = $data["location"];
+        $status = $data["status"];
         $picture = $data["picture"];
     } else {
         header("location: error.php");
@@ -88,10 +89,16 @@ mysqli_close($connect);
                 </tr>
                 <tr>
                     <th>Size</th>
-                    <td> <select name="size" class="form-control" type="text" value="<?= $size ?>">
-                            <option value="small">small</option>
-                            <option value="medium">medium</option>
-                            <option value="big">big</option>
+                    <td> <select name="size">
+                            <option <?php if ($size == "small") {
+                                        echo "selected";
+                                    }  ?> value="small">small</option>
+                            <option <?php if ($size == "medium") {
+                                        echo "selected";
+                                    }  ?> value="medium">medium</option>
+                            <option <?php if ($size == "big") {
+                                        echo "selected";
+                                    }  ?> value="big">big</option>
                         </select>
                     </td>
                 </tr>
@@ -101,9 +108,13 @@ mysqli_close($connect);
                 </tr>
                 <tr>
                     <th>Vaccine</th>
-                    <td> <select name="vaccine" class="form-control" type="text">
-                            <option value="vaccinated">vaccinated</option>
-                            <option value="not vaccinated">not vaccinated</option>
+                    <td> <select name="vaccine">
+                            <option <?php if ($vaccine == "vaccinated") {
+                                        echo "selected";
+                                    }  ?> value="vaccinated">vaccinated</option>
+                            <option <?php if ($vaccine == "not vaccinated") {
+                                        echo "selected";
+                                    }  ?> value="not vaccinated">not vaccinated</option>
                         </select>
                     </td>
                 </tr>
@@ -121,8 +132,12 @@ mysqli_close($connect);
                 </tr>
                 <th>Status</th>
                 <td> <select name="status">
-                        <option value="available">Available</option>
-                        <option value="adopted">Adopted</option>
+                        <option <?php if ($status == "available") {
+                                    echo "selected";
+                                }  ?> value="available">Available</option>
+                        <option <?php if ($status == "adopted") {
+                                    echo "selected";
+                                }  ?> value="adopted">Adopted</option>
                     </select>
                 </td>
                 <tr>

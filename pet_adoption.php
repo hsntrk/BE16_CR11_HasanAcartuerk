@@ -26,7 +26,7 @@ if (isset($_POST["submit"])) {
     if ($result && $result_status) {
         $class = "success";
         $message = "Successfully Adopted!";
-        header("refresh:4; url=home.php");
+        header("refresh:2; url=home.php");
     } else {
         echo "Error";
     }
